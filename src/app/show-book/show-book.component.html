@@ -1,0 +1,151 @@
+<div class="container">
+  <h2>Danh Sach Book</h2>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalCreate">
+    Create Book
+  </button>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Tên Sách</th>
+      <th>Tác Giả</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let b of showBooks">
+      <td>{{b.id}}</td>
+      <td><a href="#" data-toggle="modal" data-target="#myModalDetails" (click)="showDetails(b)">{{b.title}}</a></td>
+      <td>{{b.author}}</td>
+      <td align="center">
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModalEdit"
+                (click)="showEdit(b)"    >Edit
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="DeleteBook(b.id)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<!--<div align="center">-->
+<!--  <pagination-controls (pageChange)="p = $event"></pagination-controls>-->
+<!--</div>-->
+
+<!--<div style="padding-left: 45%">-->
+<!--  <button><a href="#"><<<</a></button>-->
+<!--  <b></b> / <b></b>-->
+<!--  <button><a href="#">>>></a></button>-->
+<!--</div>-->
+<!-- The Modal Create -->
+<div class="modal" id="myModalCreate">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Input New Book</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="resetInput()">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <table>
+          <!--          <tr>-->
+          <!--            <th>ID Tour:</th>-->
+          <!--            <td><input id="id" placeholder="ID Tour" [(ngModel)]="tourCreate.id"></td>-->
+          <!--          </tr>-->
+          <tr>
+            <th>Ten Sach:</th>
+            <td><input id="title" placeholder="Ten Sach" [(ngModel)]="showBook.title"></td>
+          </tr>
+          <tr>
+            <th>Tac Gia:</th>
+            <td><input id="author" placeholder="Tac Gia" [(ngModel)]="showBook.author"></td>
+          </tr>
+          <tr>
+            <th>Mo Ta:</th>
+            <td><input id="description" placeholder="Mo Ta" [(ngModel)]="showBook.description"></td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="CreateBook(showBook)">Create</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="resetInput()">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- The Modal Edit -->
+<div class="modal" id="myModalEdit">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Update Book</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="resetInput()">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <table>
+          <!--          <tr>-->
+          <!--            <th>ID Tour:</th>-->
+          <!--            <td><input id="id1" placeholder="ID Tour" [(ngModel)]="showTour.id" readonly></td>-->
+          <!--          </tr>-->
+          <tr>
+            <th>Ten Sach:</th>
+            <td><input id="title1" placeholder="Name Tour" [(ngModel)]="showBook.title"></td>
+          </tr>
+          <tr>
+            <th>Tac Gia:</th>
+            <td><input id="author1" placeholder="Price Tour" [(ngModel)]="showBook.author"></td>
+          </tr>
+          <tr>
+            <th>Mo Ta:</th>
+            <td><input id="description1" placeholder="Description Tour" [(ngModel)]="showBook.description"></td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="UpdateBook(showBook)">Update</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="resetInput()">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- The Modal Details -->
+<div class="modal" id="myModalDetails">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Details Book</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="resetInput()">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <label>ID Tuor: {{showBook.id}} </label>
+        <br>
+        <label>Ten Sach: {{showBook.title}}</label>
+        <br>
+        <label>Tac Gia: {{showBook.author}} </label>
+        <br>
+        <label>Mo Ta: {{showBook.description}} </label>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="resetInput()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
